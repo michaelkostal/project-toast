@@ -18,6 +18,7 @@ function ToastPlayground() {
   function handleToast(){
     setShowToast(true);
   }
+  const [toasts, setToasts] = React.useState([]);
   return (
     <div className={styles.wrapper}>
       <header>
@@ -28,6 +29,9 @@ function ToastPlayground() {
       <form 
         className={styles.controlsWrapper} 
         onSubmit={(e)=>{
+          const toast = {message:message, variant:variant, id: Math.random()};
+          const nextToasts = [...toasts, toast];
+          setToasts(nextToasts);
           e.preventDefault();
           handleToast();
         }}
@@ -41,10 +45,9 @@ function ToastPlayground() {
             Message
           </label>
           <div className={styles.inputWrapper}>
-            <textarea id="message" className={styles.messageInput} onChange={e=>{
+            <textarea id="message" className={styles.messageInput} value={message} onChange={e=>{
               setMessage(e.target.value);
             }}>
-              {message}
             </textarea>
           </div>
         </div>
