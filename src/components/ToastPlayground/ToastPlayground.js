@@ -13,7 +13,7 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const [message,setMessage] = React.useState('');
-  const [variant,setVariant] = React.useState('notice');
+  const [variant,setVariant] = React.useState(VARIANT_OPTIONS[0]);
   
 
   const [toasts, setToasts] = React.useState([]);
@@ -33,7 +33,7 @@ function ToastPlayground() {
           setToasts(nextToasts);
           // Reset form to default states
           setMessage('');
-          setVariant('notice');
+          setVariant(VARIANT_OPTIONS[0]);
         }}
       >
         <div className={styles.row}>
