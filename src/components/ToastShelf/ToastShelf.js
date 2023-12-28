@@ -5,8 +5,9 @@ import styles from './ToastShelf.module.css';
 
 function ToastShelf({toasts, setToasts}) {
   function handleDismiss(id){
-    const nextToasts = [...toasts];
-    nextToasts.splice(id, 1);
+    const nextToasts = toasts.filter((toast) => {
+      return toast.id !== id;
+    });
     setToasts(nextToasts);
   }
   return (
