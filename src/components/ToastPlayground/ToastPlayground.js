@@ -12,7 +12,7 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 
 function ToastPlayground() {
-  const { createToast } = React.useContext(ToastContext);
+  const { createToast, dismissAllToasts } = React.useContext(ToastContext);
   const [message,setMessage] = React.useState('');
   const [variant,setVariant] = React.useState(VARIANT_OPTIONS[0]);
   
@@ -87,6 +87,10 @@ function ToastPlayground() {
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
             <Button>Pop Toast!</Button>
+            <Button onClick={(event)=>{
+              event.preventDefault();
+              dismissAllToasts();
+            }}>Clear all</Button>
           </div>
         </div>
       </form>
