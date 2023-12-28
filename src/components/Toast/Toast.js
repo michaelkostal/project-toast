@@ -17,7 +17,7 @@ const ICONS_BY_VARIANT = {
   success: CheckCircle,
   error: AlertOctagon,
 };
-function Toast({ id, variant, children}) {
+function Toast({ id, variant, children }) {
   const { dismissToast } = React.useContext(ToastContext);
   const Icon = ICONS_BY_VARIANT[variant];
   return (
@@ -26,11 +26,16 @@ function Toast({ id, variant, children}) {
         <Icon size={24} />
       </div>
       <p className={styles.content}>
+        <VisuallyHidden>{variant} - </VisuallyHidden>
         {children}
       </p>
-      <button className={styles.closeButton} onClick={()=>{dismissToast(id)}}>
+      <button
+        className={styles.closeButton}
+        onClick={() => { dismissToast(id) }}
+        aria-label="Dismiss message"
+        aria-live="off"
+      >
         <X size={24} />
-        <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
     </div>
   );
