@@ -12,7 +12,7 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 
 function ToastPlayground() {
-  const [message,setMessage] = React.useState('Default notice message');
+  const [message,setMessage] = React.useState('');
   const [variant,setVariant] = React.useState('notice');
   
 
@@ -27,11 +27,13 @@ function ToastPlayground() {
       <form 
         className={styles.controlsWrapper} 
         onSubmit={(e)=>{
+          e.preventDefault();
           const toast = {message:message, variant:variant, id: Math.random()};
           const nextToasts = [...toasts, toast];
           setToasts(nextToasts);
-          e.preventDefault();
-          
+          // Reset form to default states
+          setMessage('');
+          setVariant('notice');
         }}
       >
         <div className={styles.row}>
@@ -39,13 +41,20 @@ function ToastPlayground() {
             htmlFor="message"
             className={styles.label}
             style={{ alignSelf: 'baseline' }}
+            
           >
             Message
           </label>
           <div className={styles.inputWrapper}>
-            <textarea id="message" className={styles.messageInput} value={message} onChange={e=>{
+            <textarea 
+              id="message" 
+              className={styles.messageInput} 
+              value={message} 
+              required={true}
+              onChange={e=>{
               setMessage(e.target.value);
-            }}>
+              }}
+            >
             </textarea>
           </div>
         </div>
