@@ -17,7 +17,7 @@ const ICONS_BY_VARIANT = {
   success: CheckCircle,
   error: AlertOctagon,
 };
-function Toast({ variant, id, handleDismiss, children}) {
+function Toast({ id, variant, handleDismiss, children}) {
   const Icon = ICONS_BY_VARIANT[variant];
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
