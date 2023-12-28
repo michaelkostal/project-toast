@@ -4,9 +4,9 @@ import Button from '../Button';
 
 import styles from './ToastPlayground.module.css';
 
-import Toast from '../Toast';
+// import Toast from '../Toast';
 
-// import ToastShelf from '../ToastShelf';
+import ToastShelf from '../ToastShelf';
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
@@ -14,10 +14,8 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
   const [message,setMessage] = React.useState('Default notice message');
   const [variant,setVariant] = React.useState('notice');
-  const [showToast, setShowToast] = React.useState(false);
-  function handleToast(){
-    setShowToast(true);
-  }
+  
+
   const [toasts, setToasts] = React.useState([]);
   return (
     <div className={styles.wrapper}>
@@ -25,7 +23,7 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      {showToast && <Toast variant={variant} message={message} handleDismiss={setShowToast} />}
+      <ToastShelf toasts={toasts} setToasts={setToasts} />
       <form 
         className={styles.controlsWrapper} 
         onSubmit={(e)=>{
@@ -33,7 +31,7 @@ function ToastPlayground() {
           const nextToasts = [...toasts, toast];
           setToasts(nextToasts);
           e.preventDefault();
-          handleToast();
+          
         }}
       >
         <div className={styles.row}>
