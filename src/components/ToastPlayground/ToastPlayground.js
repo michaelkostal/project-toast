@@ -14,9 +14,16 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
   const [message,setMessage] = React.useState('');
   const [variant,setVariant] = React.useState(VARIANT_OPTIONS[0]);
-  
-
   const [toasts, setToasts] = React.useState([]);
+  function handleCreateToast(event){
+    event.preventDefault();
+    const toast = {message:message, variant:variant, id: Math.random()};
+    const nextToasts = [...toasts, toast];
+    setToasts(nextToasts);
+    // Reset form to default states
+    setMessage('');
+    setVariant(VARIANT_OPTIONS[0]);
+  }
   return (
     <div className={styles.wrapper}>
       <header>
@@ -26,15 +33,7 @@ function ToastPlayground() {
       <ToastShelf toasts={toasts} setToasts={setToasts} />
       <form 
         className={styles.controlsWrapper} 
-        onSubmit={(e)=>{
-          e.preventDefault();
-          const toast = {message:message, variant:variant, id: Math.random()};
-          const nextToasts = [...toasts, toast];
-          setToasts(nextToasts);
-          // Reset form to default states
-          setMessage('');
-          setVariant(VARIANT_OPTIONS[0]);
-        }}
+        onSubmit={handleCreateToast}
       >
         <div className={styles.row}>
           <label
