@@ -25,7 +25,13 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
       {showToast && <Toast variant={variant} message={message} handleDismiss={setShowToast} />}
-      <div className={styles.controlsWrapper}>
+      <form 
+        className={styles.controlsWrapper} 
+        onSubmit={(e)=>{
+          e.preventDefault();
+          handleToast();
+        }}
+      >
         <div className={styles.row}>
           <label
             htmlFor="message"
@@ -71,10 +77,10 @@ function ToastPlayground() {
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
-            <Button onClick={handleToast}>Pop Toast!</Button>
+            <Button>Pop Toast!</Button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
