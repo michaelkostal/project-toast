@@ -4,19 +4,22 @@ import Button from '../Button';
 
 import styles from './ToastPlayground.module.css';
 
+import Toast from '../Toast';
+
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
+
 function ToastPlayground() {
-  const [message,setMessage] = React.useState('');
+  const [message,setMessage] = React.useState('Default notice message');
   const [toastVariant,setToastVariant] = React.useState('notice');
-  console.log(toastVariant);
+  
   return (
     <div className={styles.wrapper}>
       <header>
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-
+      <Toast variant={toastVariant} message={message} />
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
