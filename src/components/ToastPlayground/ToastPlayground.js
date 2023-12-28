@@ -12,14 +12,17 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
   const [message,setMessage] = React.useState('Default notice message');
   const [toastVariant,setToastVariant] = React.useState('notice');
-  
+  const [showToast, setShowToast] = React.useState(false);
+  function handleToast(){
+    setShowToast(true);
+  }
   return (
     <div className={styles.wrapper}>
       <header>
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      <Toast variant={toastVariant} message={message} />
+      {showToast && <Toast variant={toastVariant} message={message} setShowToast={setShowToast} />}
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
@@ -66,7 +69,7 @@ function ToastPlayground() {
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
           >
-            <Button>Pop Toast!</Button>
+            <Button onClick={handleToast}>Pop Toast!</Button>
           </div>
         </div>
       </div>
