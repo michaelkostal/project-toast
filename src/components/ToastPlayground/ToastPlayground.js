@@ -24,7 +24,7 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      {showToast && <Toast variant={variant} message={message} setShowToast={setShowToast} />}
+      {showToast && <Toast variant={variant} message={message} handleDismiss={setShowToast} />}
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
@@ -60,7 +60,7 @@ function ToastPlayground() {
                     setVariant(e.target.value);
                   }}
                 />
-                  {variant}
+                  {option}
                 </label>
             })}
           </div>
